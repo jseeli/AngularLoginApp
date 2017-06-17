@@ -21,8 +21,17 @@ public class RegisterDAO
 	}
 	
 	@Transactional
-	public void insertRegister(Register register)
+	public boolean insertRegister(Register register)
 	{
+		try
+		{
 		sessionFactory.getCurrentSession().saveOrUpdate(register);
+		return true;
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception Arised:"+e);
+			return false;
+		}
 	}
 }

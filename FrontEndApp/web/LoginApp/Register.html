@@ -1,4 +1,4 @@
-<div id="loginbox" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+<div id="loginbox" ng-controller="LoginAppController" style="margin-top: 50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<div class="panel-title">Sign Up</div>
@@ -7,33 +7,33 @@
 		<div style="padding-top: 30px" class="panel-body">
 
 			<div style="display: none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-			<form id="login-form" class="form-horizontal" action="InsertUserCredential" method="post">
+			<form id="login-form" class="form-horizontal" method="post">
 
 				<div style="margin-bottom: 25px" class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-					<input name="loginid" type="text" class="form-control" placeholder="Enter User ID" required maxlength="15" />
+					<input name="loginid" ng-model="register.loginid" type="text" class="form-control" placeholder="Enter User ID" required minlength="8" maxlength="15" />
 				</div>
 				<div style="margin-bottom: 25px" class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
-					<input name="passwd" type="password" class="form-control" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Password Should Contain Capital,Small Letter and digits Combination" autocomplete="off" required />
+					<input name="password" ng-model="register.password" type="password" class="form-control" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Password Should Contain Capital,Small Letter and digits Combination" minlength="8" maxlength="15" autocomplete="off" required />
 				</div>
 				<div style="margin-bottom: 25px" class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-					<input name="username" type="text" class="form-control" placeholder="Enter Customer Name" autocomplete="off" required />
+					<input name="username" ng-model="register.username" type="text" class="form-control" placeholder="Enter Customer Name" autocomplete="off" required />
 				</div>
 				<div style="margin-bottom: 25px" class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-					<input name="emailid" type="email" class="form-control"	pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email Id" autocomplete="off" required />
+					<input name="emailid" type="email" ng-model="register.emailid" class="form-control"	pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Email Id" autocomplete="off" required />
 				</div>
 				<div style="margin-bottom: 25px" class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span> 
-					<input name="mobile" type="text" class="form-control" placeholder="Mobile Number Should Contain 10 Digits" pattern="[789]\d{9}" placeholder="Mobile Number Should be 10 digit" autocomplete="off" required />
+					<input name="mobile" type="text" ng-model="register.mobile" class="form-control" placeholder="Mobile Number Should Contain 10 Digits" pattern="[789]\d{9}" placeholder="Mobile Number Should be 10 digit" autocomplete="off" required />
 				</div>
 
 				<div style="margin-top: 10px" class="form-group">
 					<div class="col-sm-12 controls">
 						<center>
-						<input type="submit" class="btn btn-success" value="Register"/>
+						<input type="submit" class="btn btn-success" value="Register" ng-click="completeRegister()"/>
 						</center>
 					</div>
 				</div>

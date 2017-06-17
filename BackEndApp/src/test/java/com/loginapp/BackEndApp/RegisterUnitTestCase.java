@@ -1,18 +1,30 @@
 package com.loginapp.BackEndApp;
 
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.loginapp.BackEndApp.dao.RegisterDAO;
 import com.loginapp.BackEndApp.model.Register;
 
-public class RegisterTestCase 
+public class RegisterUnitTestCase 
 {
-	public static void main(String arg[])
+
+	AnnotationConfigApplicationContext context;
+	
+	@Before
+	public void BeforeClass()
 	{
-		AnnotationConfigApplicationContext context=new AnnotationConfigApplicationContext();
+		context=new AnnotationConfigApplicationContext();
 		context.scan("com.loginapp.BackEndApp");
 		context.refresh();
-		
+	}
+	
+	@Test
+	public void test() 
+	{
 		RegisterDAO registerDAO=(RegisterDAO)context.getBean("registerDAO");
 		
 		Register register=new Register();
@@ -22,8 +34,7 @@ public class RegisterTestCase
 		register.setEmailid("srinssit@gmail.com");
 		register.setMobile("9911133332");
 		
-		registerDAO.insertRegister(register);
-		System.out.println("Registration Completed:");
-		
+		assertEquals(registerDAO.insertRegister(register),true);
 	}
+
 }
