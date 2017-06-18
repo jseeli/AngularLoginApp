@@ -15,7 +15,7 @@ public class RegisterTestCase
 		
 		RegisterDAO registerDAO=(RegisterDAO)context.getBean("registerDAO");
 		
-		Register register=new Register();
+		/*Register register=new Register();
 		register.setLoginid("harish");
 		register.setPassword("12345");
 		register.setUsername("Harish P");
@@ -23,7 +23,15 @@ public class RegisterTestCase
 		register.setMobile("9911133332");
 		
 		registerDAO.insertRegister(register);
-		System.out.println("Registration Completed:");
+		System.out.println("Registration Completed:");*/
+		
+		Register register=registerDAO.loginCheck("dyna124","P@ssword@123");
+		
+		if(register!=null)
+			System.out.println("Customer Name:"+register.getUsername());
+		else
+			System.out.println("Error - User Does not exist");
+		
 		
 	}
 }

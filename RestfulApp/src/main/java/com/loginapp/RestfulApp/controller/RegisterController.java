@@ -20,10 +20,38 @@ public class RegisterController
 	RegisterDAO registerDAO;
 	
 	@RequestMapping(value="/insertRegister",method=RequestMethod.POST)
-	public ResponseEntity<String> addRegister(@RequestBody Register register)
+	public ResponseEntity<Register> addRegister(@RequestBody Register register)
 	{
 		registerDAO.insertRegister(register);
-		return new ResponseEntity<String>("Successfully Inserted",HttpStatus.OK);
+		return new ResponseEntity<Register>(register,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/loginCheck",method=RequestMethod.POST)
+	public ResponseEntity<Register> loginCheck(@RequestBody Register register)
+	{
+		Register register1=new Register();
+		try
+		{		
+		 register1=registerDAO.loginCheck(register.getLoginid(),register.getPassword());
+		
+		if(register1!=null)
+		{
+			register1.errorcode="200";
+			register1.errordesc="Successful";
+		}
+		else
+		{
+			register1.errorcode="234";
+			register1.errordesc="User does not exist";
+		}
+		}
+		catch(Exception e)
+		{
+			register1.errorcode="235";
+			register1.errordesc="Exception Occured";
+		}
+		
+		return new ResponseEntity<Register>(register1,HttpStatus.OK);
 	}
 
 }

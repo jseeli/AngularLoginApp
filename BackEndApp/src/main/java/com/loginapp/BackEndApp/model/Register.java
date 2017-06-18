@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table
-public class Register 
+public class Register extends BaseDomain
 {
 	@NotNull(message="Login ID cannot be null")
 	@Size(min=8, max=15)
